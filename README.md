@@ -1,1 +1,1 @@
-# Design-Patterns Visualization
+# React Ecosystem Visualization

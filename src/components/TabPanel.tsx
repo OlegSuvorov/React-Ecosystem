@@ -67,7 +67,7 @@ const TabPanel = ({ children }: { children: React.ReactNode[]}) => {
           classes={{ indicator: classes.indicator }}
         >
           <Tab label="Code" {...allProps(0)} />
-          <Tab label="Description" {...allProps(1)} />
+          <Tab label="Example" {...allProps(1)} />
         </Tabs>
       </AppBar>
       <TabItem value={value} index={0}>
