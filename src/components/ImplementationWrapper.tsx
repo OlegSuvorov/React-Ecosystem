@@ -10,6 +10,9 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
   },
+  console: {
+    marginTop: 8,
+  },
 });
 
 const Implementation =
@@ -41,8 +44,10 @@ const Implementation =
             <Component { ...extraProps }/>
           }
         </Grid>
+      </Paper>
+      <Paper>
         {isConsoleOpen &&
-          <Grid item xs={12} sm={12}>
+          <Grid className={classes.console} item xs={12} sm={12}>
             <Card variant="outlined">
               <CardContent>
                 {messages && messages.length > 0 &&

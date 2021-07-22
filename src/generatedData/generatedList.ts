@@ -1,4 +1,4 @@
-[
+export const longList = [
   {
     "id": "60f72066e564bf2ad3035ec2",
     "name": "Marylou Mercado"
