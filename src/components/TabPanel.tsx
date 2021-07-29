@@ -12,6 +12,8 @@ interface TabPanelProps {
   value: any;
 }
 
+const allTabLabels = ['Code', 'Example'];
+
 const TabItem = (props: TabPanelProps) => {
   const { children, value, index } = props;
 
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const TabPanel = ({ children }: { children: React.ReactNode[]}) => {
+const TabPanel = ({ children }: { children: React.ReactNode[] | React.ReactNode }) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -57,6 +59,8 @@ const TabPanel = ({ children }: { children: React.ReactNode[]}) => {
     setValue(newValue);
   };
 
+  const childrenElements = Array.isArray(children) ? children : [children];
+  const tabLabels = allTabLabels.slice(0, childrenElements.length);
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -66,16 +70,17 @@ const TabPanel = ({ children }: { children: React.ReactNode[]}) => {
           aria-label="simple tabs example"
           classes={{ indicator: classes.indicator }}
         >
-          <Tab label="Code" {...allProps(0)} />
-          <Tab label="Example" {...allProps(1)} />
+          {tabLabels.length > 0 &&
+            tabLabels.map((tabLabel, index) => (
+              <Tab key={tabLabel} label={tabLabel} {...allProps(index)} />
+           ))}
         </Tabs>
       </AppBar>
-      <TabItem value={value} index={0}>
-        {children[0]}
-      </TabItem>
-      <TabItem value={value} index={1}>
-        {children[1]}
-      </TabItem>
+      {childrenElements.map((child: React.ReactNode, index) => (
+        <TabItem key={index.toString()} value={value} index={index}>
+          {child}
+        </TabItem>
+      ))}
     </div>
   );
 };

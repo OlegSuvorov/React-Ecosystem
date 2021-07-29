@@ -7,12 +7,10 @@ export enum Themes {
 }
 
 interface IThemeContext {
-  themeName: Themes;
   setThemeName: React.Dispatch<React.SetStateAction<Themes>> | null;
 }
 
 export const CustomThemeContext = React.createContext({
-    themeName: Themes.dark,
     setThemeName: null,
   } as IThemeContext,
 );
@@ -29,7 +27,6 @@ const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const contextValue = {
-    themeName,
     setThemeName,
   }
 

@@ -1,5 +1,8 @@
-import Virtualization from './sections/Virtualization';
-import Context from './sections/Context';
+import { lazy } from 'react';
+
+const Virtualization = lazy(() => import('./sections/Virtualization'));
+const Context = lazy(() => import('./sections/Context'));
+const CodeSplitting = lazy(() => import('./sections/CodeSplitting'));
 
 export const sections = [
   {
@@ -11,5 +14,10 @@ export const sections = [
     name: 'Context',
     path: '/context',
     component: Context,
+  },
+  {
+    name: 'Code Splitting',
+    path: '/code-splitting',
+    component: CodeSplitting,
   },
 ];

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   Switch,
   Route,
@@ -174,17 +174,19 @@ const Main: React.FC = () => {
         })}
       >
         <div className={classes.drawerHeader} />
-        <Switch>
-          <Route exact path="/">
-            <Redirect to={(sections && sections.length > 0 && sections[0].path) || '/' } />
-          </Route>
-          {sections && sections.length > 0 &&
-          sections.map(({ component: Component, path, name }) => (
-              <Route key={name} path={path}>
-                <Component />
-              </Route>
-          ))}
-        </Switch>
+        <Suspense fallback={<div>Загрузка...</div>}>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to={(sections && sections.length > 0 && sections[0].path) || '/' } />
+            </Route>
+            {sections && sections.length > 0 &&
+              sections.map(({ component: Component, path, name }) => (
+                <Route key={name} path={path}>
+                  <Component />
+                </Route>
+            ))}
+          </Switch>
+        </Suspense>
       </main>
     </div>
   );
