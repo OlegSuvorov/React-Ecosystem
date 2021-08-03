@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 export enum Themes {
   dark = 'dark',
@@ -20,7 +20,7 @@ CustomThemeContext.displayName = 'CustomThemeContext';
 const CustomThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [themeName, setThemeName] = useState(Themes.dark);
 
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       type: themeName,
     }
