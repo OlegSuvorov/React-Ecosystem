@@ -4,6 +4,7 @@ const Virtualization = lazy(() => import('./sections/Virtualization'));
 const Context = lazy(() => import('./sections/Context'));
 const CodeSplitting = lazy(() => import('./sections/CodeSplitting'));
 const Forms = lazy(() => import('./sections/Forms'));
+const UseMemo = lazy(() => import('./sections/UseMemo'));
 
 export const sections = [
   {
@@ -25,5 +26,10 @@ export const sections = [
     name: 'Forms',
     path: '/forms',
     component: Forms,
+  },
+  {
+    name: 'Use Memo',
+    path: '/use-memo',
+    component: UseMemo,
   },
 ];

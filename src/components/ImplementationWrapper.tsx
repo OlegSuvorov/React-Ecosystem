@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import { makeStyles  } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -32,8 +32,14 @@ const Implementation =
       : [...messages, message];
     setMessages(newMessages);
   };
+
   const clearAll = () => setMessages(['']);
-  const extraProps = { addMessage, clearAll };
+
+  const memoClearAll = useCallback(clearAll, []);
+
+  const memoAddMessage = useCallback(addMessage, []);
+
+  const extraProps = { addMessage: memoAddMessage, clearAll: memoClearAll };
 
   return (
     <div className={classes.root}>
