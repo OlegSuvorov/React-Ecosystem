@@ -111,7 +111,7 @@ const Example =
           </Button>
         </Grid>
         {
-          search && (
+          search && memoList.length > 0 && (
             <Grid className={classes.list} item xs={12} sm={12}>
               <FixedSizeList
                 height={300}

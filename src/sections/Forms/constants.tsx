@@ -46,31 +46,8 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
 });
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      marginBottom: theme.spacing(2),
-    },
-    row: {
-      padding: 16,
-    },
-    formName: {
-      margin: 0,
-    },
-    grid: {
-      marginBottom: 16,
-    }
-  }),
-);
-
 const Example =
-  ({
-     addMessage,
-   }: {
-    addMessage: Function;
-    clearAll: Function;
-  }) => {
+  () => {
     const classes = useStyles();
 
     const handleSubmit = (
@@ -79,7 +56,7 @@ const Example =
     ) => {
       setTimeout(() => {
         setSubmitting(false);
-        addMessage(JSON.stringify(values));
+        console.log(JSON.stringify(values));
       }, 500);
     };
 

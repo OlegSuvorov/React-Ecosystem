@@ -25,39 +25,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { longList } from '../../generatedData/generatedList';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      position: 'relative',
-      flexGrow: 1,
-      marginBottom: theme.spacing(2),
-      padding: theme.spacing(2),
-    },
-    row: {
-      padding: 16,
-    },
-    btn: {
-      display: 'flex',
-      justifyContent: 'center',
-      marginTop: theme.spacing(2),
-      '& button': {
-        width: 200,
-      }
-    },
-    label: {
-      paddingBottom: theme.spacing(1),
-    },
-    list: {
-      marginTop: theme.spacing(2),
-      border: '1px solid #6d6d6d',
-      borderRadius: 4,
-    }
-  }),
-);
-
-const message: string[] = [];
-
-const Example =() => {
+const Example = () => {
   const classes = useStyles();
   const [text, setText] = useState('');
   const [search, setSearch] = useState('');
@@ -112,7 +80,7 @@ const Example =() => {
         </Button>
       </Grid>
       {
-        search && (
+        search && memoList.length > 0 && (
           <Grid className={classes.list} item xs={12} sm={12}>
             <FixedSizeList
               height={300}

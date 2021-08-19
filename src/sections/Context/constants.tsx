@@ -79,18 +79,6 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import { CustomThemeContext, Themes } from './Example';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-      marginBottom: theme.spacing(2),
-    },
-    button: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
-
 const Switcher = () => {
   const { setThemeName } = useContext(CustomThemeContext);
   const classes = useStyles();

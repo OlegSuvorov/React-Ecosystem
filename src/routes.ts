@@ -5,6 +5,7 @@ const Context = lazy(() => import('./sections/Context'));
 const CodeSplitting = lazy(() => import('./sections/CodeSplitting'));
 const Forms = lazy(() => import('./sections/Forms'));
 const UseMemo = lazy(() => import('./sections/UseMemo'));
+const UseCallbackAndMemo = lazy(() => import('./sections/UseCallbackAndMemo'));
 
 export const sections = [
   {
@@ -31,5 +32,10 @@ export const sections = [
     name: 'Use Memo',
     path: '/use-memo',
     component: UseMemo,
+  },
+  {
+    name: 'Use Callback and memo',
+    path: '/use-callback-memo',
+    component: UseCallbackAndMemo,
   },
 ];
