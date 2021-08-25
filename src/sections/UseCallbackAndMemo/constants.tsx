@@ -25,7 +25,7 @@ const Child = (
   const classes = useStyles();
   
   useEffect(() => {
-    console.log(\`\$\{childName\} reloading...\`);
+    console.log(\`$\{childName} reloading...\`);
   });
 
   const handleChange = (e: ChangeEvent) => {
@@ -44,7 +44,7 @@ const Child = (
             <Typography
               variant="h6"
             >
-            {\`\$\{childName\} child\`}
+            {\`$\{childName} child\`}
             </Typography>
           </Grid>
           <Grid item xs={12} sm={12}>

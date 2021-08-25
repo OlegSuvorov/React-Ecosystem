@@ -6,6 +6,7 @@ const CodeSplitting = lazy(() => import('./sections/CodeSplitting'));
 const Forms = lazy(() => import('./sections/Forms'));
 const UseMemo = lazy(() => import('./sections/UseMemo'));
 const UseCallbackAndMemo = lazy(() => import('./sections/UseCallbackAndMemo'));
+const MaterialUI = lazy(() => import('./sections/Material-UI'));
 
 export const sections = [
   {
@@ -37,5 +38,10 @@ export const sections = [
     name: 'Use Callback and memo',
     path: '/use-callback-memo',
     component: UseCallbackAndMemo,
+  },
+  {
+    name: 'Material UI',
+    path: '/material-ui',
+    component: MaterialUI,
   },
 ];
