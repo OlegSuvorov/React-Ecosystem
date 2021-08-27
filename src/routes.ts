@@ -7,6 +7,7 @@ const Forms = lazy(() => import('./sections/Forms'));
 const UseMemo = lazy(() => import('./sections/UseMemo'));
 const UseCallbackAndMemo = lazy(() => import('./sections/UseCallbackAndMemo'));
 const MaterialUI = lazy(() => import('./sections/Material-UI'));
+const WebWorker = lazy(() => import('./sections/WebWorker'));
 
 export const sections = [
   {
@@ -43,5 +44,10 @@ export const sections = [
     name: 'Material UI',
     path: '/material-ui',
     component: MaterialUI,
+  },
+  {
+    name: 'Web Worker',
+    path: '/web-worker',
+    component: WebWorker,
   },
 ];
