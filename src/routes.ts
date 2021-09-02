@@ -8,6 +8,7 @@ const UseMemo = lazy(() => import('./sections/UseMemo'));
 const UseCallbackAndMemo = lazy(() => import('./sections/UseCallbackAndMemo'));
 const MaterialUI = lazy(() => import('./sections/Material-UI'));
 const WebWorker = lazy(() => import('./sections/WebWorker'));
+const CustomHooks = lazy(() => import('./sections/CustomHooks'));
 
 export const sections = [
   {
@@ -49,5 +50,10 @@ export const sections = [
     name: 'Web Worker',
     path: '/web-worker',
     component: WebWorker,
+  },
+  {
+    name: 'Custom Hooks',
+    path: '/custom-hooks',
+    component: CustomHooks,
   },
 ];
