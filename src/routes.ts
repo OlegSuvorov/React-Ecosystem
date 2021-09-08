@@ -9,12 +9,18 @@ const UseCallbackAndMemo = lazy(() => import('./sections/UseCallbackAndMemo'));
 const MaterialUI = lazy(() => import('./sections/Material-UI'));
 const WebWorker = lazy(() => import('./sections/WebWorker'));
 const CustomHooks = lazy(() => import('./sections/CustomHooks'));
+const ReduxToolkit = lazy(() => import('./sections/ReduxToolkit'));
 
 export const sections = [
   {
     name: 'Virtualization',
     path: '/virtualization',
     component: Virtualization,
+  },
+  {
+    name: 'Redux Toolkit',
+    path: '/redux-toolkit',
+    component: ReduxToolkit,
   },
   {
     name: 'Context',

@@ -1,4 +1,6 @@
 import React from 'react';
+import { store } from './sections/ReduxToolkit/store';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import {
   CssBaseline
@@ -8,12 +10,14 @@ import CustomThemeProvider from "./sections/Context/Example";
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <CustomThemeProvider>
-        <CssBaseline />
-        <Main />
-      </CustomThemeProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <CustomThemeProvider>
+          <CssBaseline />
+          <Main />
+        </CustomThemeProvider>
+      </BrowserRouter>
+    </Provider>
   );
 };
 
