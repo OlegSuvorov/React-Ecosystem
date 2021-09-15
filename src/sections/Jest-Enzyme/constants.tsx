@@ -20,130 +20,109 @@ export const codeString =
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-// setup enzyme configuration
 configure({ adapter: new Adapter() });
 
-export const { add, remove } = toolsSlice.actions
-
-export const selectTools = (state: RootState) => state.tools;
-
-export default toolsSlice.reducer;
+ // ------ В файле package.json прописываем скрипты test и coverage (если нужно) ------
+ // При запуске скрипта test или coverage Jest будет искать и запускать файлы:
+ // 1) Файлы с .js суффиксом в __tests__ папках.
+ // 2) Файлы с .test.js суффиксом.
+ // 3) Файлы с .spec.js суффиксом.
  
- // ------ Создаем store ------
-
-import { configureStore } from '@reduxjs/toolkit';
-import toolReducer from './toolsSlice';
-
-export const store = configureStore({
-  reducer: {
-    tools: toolReducer,
+ "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "coverage": "npm test -- --coverage",
+    "eject": "react-scripts eject"
   },
+  
+ // ------ Пример файла example.test.tsx ------
+  
+import React from 'react';
+import { Store } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import { mount } from 'enzyme';
+import { ListItem } from '@material-ui/core';
+import Example from '../ReduxToolkit/Example';
+import { store } from '../ReduxToolkit/store';
+import { reduxTools } from './Example';
+
+const setup = (store: Store) => {
+  return mount(
+    <Provider store={store}>
+      <Example />
+  </Provider>,
+  );
+};
+
+describe('Example component', () => {
+  const wrapper = setup(store);
+
+  it('renders with initial redux state', () => {
+    expect(wrapper).toBeDefined();
+  });
+
+  it('renders tools list with expected length', () => {
+    const expectedResult = store.getState().tools?.length;
+    const listItems = wrapper.find(ListItem);
+    expect(listItems.length).toBe(expectedResult);
+  });
+
+  it('should not render addButton if max list length reached', () => {
+    const initialAddButton = wrapper.find('[data-test="add-btn"]');
+    reduxTools.forEach(() => initialAddButton.first().simulate('click'))
+    const currentAddButton = wrapper.find('[data-test="add-btn"]');
+    expect(currentAddButton.length).toBe(0);
+  });
+
+  it('should not render removeButton if list length === 0', () => {
+    const initialRemoveButton = wrapper.find('[data-test="remove-btn"]');
+    reduxTools.forEach(() => initialRemoveButton.first().simulate('click'))
+    const currentRemoveButton = wrapper.find('[data-test="remove-btn"]');
+    expect(currentRemoveButton.length).toBe(0);
+  });
+
+  it('adds tool after addButton click', () => {
+    const expectedResult = store.getState().tools?.length + 1;
+    const button = wrapper.find('[data-test="add-btn"]');
+    button.first().simulate('click');
+    const listItems = wrapper.find(ListItem);
+    expect(listItems.length).toBe(expectedResult);
+  });
+
+  it('removes tool after removeButton click', () => {
+    const expectedResult = store.getState().tools?.length;
+    const addButton = wrapper.find('[data-test="add-btn"]');
+    addButton.first().simulate('click');
+    const removeButton = wrapper.find('[data-test="remove-btn"]');
+    removeButton.first().simulate('click');
+    const listItems = wrapper.find(ListItem);
+    expect(listItems.length).toBe(expectedResult);
+  });
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
- // ------ Подключаем в корневом файле App ------
- 
- const App: React.FC = () => {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <CustomThemeProvider>
-          <CssBaseline />
-          <Main />
-        </CustomThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  );
-};
- 
- // ------ Если используем Typescript можно создать типизированный useDispatch и useSelector ------
- 
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
-import type { RootState, AppDispatch } from './store'
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
-
- // ------ Используем в компоненте ------
- 
-import React from 'react';
-import { useAppDispatch, useAppSelector } from './hooks';
-import { selectTools, add, remove } from './toolsSlice';
- 
-const reduxTools = [
-  'Reducer',
-  'Action',
-  'Store',
-  'Dispatch',
-  'Middleware',
-];
-
-const Example = () => {
-  const classes = useStyles();
-  const tools = useAppSelector(selectTools);
-  const dispatch = useAppDispatch();
-
-  const handleAddTool = () => dispatch(add(reduxTools[tools.length]));
-
-  const handleRemoveTool = () => dispatch(remove(tools[tools.length - 1]));
-
-  return (
-    <div className={classes.root}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={12}>
-          <Typography variant="h6" className={classes.title}>
-            Redux Tools
-          </Typography>
-          <div className={classes.demo}>
-            <List>
-              {tools.length > 0 &&
-                tools.map(tool => (
-                  <ListItem key={tool}>
-                    <ListItemAvatar>
-                      <Avatar>
-                        <FolderIcon />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={tool}
-                    />
-                  </ListItem>
-                ))}
-            </List>
-          </div>
-        </Grid>
-        <Grid
-          className={classes.actions}
-          item
-          xs={12}
-          sm={12}
-        >
-          {tools.length < reduxTools.length &&
-            <Button
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={handleAddTool}
-            >
-              Add tool
-            </Button>}
-          {tools.length > 0 &&
-            <Button
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={handleRemoveTool}
-            >
-              Remove tool
-            </Button>}
-        </Grid>
-      </Grid>
-    </div>
-  );
-};
-
-export default Example;
 
 `;
+
+export const testMessage = [
+  'PASS  src/sections/Jest-Enzyme/Example.test.tsx (9.452s)',
+  'Example component',
+  ' √ renders with initial redux state (4ms)',
+  ' √ renders tools list with expected length (42ms)',
+  ' √ should not render add button if max list length reached (147ms)',
+  ' √ should not render remove button if list length === 0 (73ms)',
+  ' √ adds tool after add button click (56ms)',
+  ' √ removes tool after remove button click (53ms)',
+  'Test Suites: 1 passed, 1 total',
+  'Tests:       6 passed, 6 total',
+  'Snapshots:   0 total',
+  'Time:        10.962s',
+  'Ran all test suites related to changed files.',
+  'Watch Usage',
+  ' › Press a to run all tests.',
+  ' › Press f to run only failed tests.',
+  ' › Press q to quit watch mode.',
+  ' › Press p to filter by a filename regex pattern.',
+  ' › Press t to filter by a test name regex pattern.',
+  ' › Press Enter to trigger a test run.'
+];

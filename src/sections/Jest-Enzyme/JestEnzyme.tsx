@@ -8,7 +8,7 @@ import Example from './Example';
 const JestEnzyme: React.FC = () => (
   <TabsPanel>
     <Code codeString={codeString} />
-    <Implementation component={Example} />
+    <Implementation isConsoleOpen component={Example} />
   </TabsPanel>
 );
 

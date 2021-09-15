@@ -10,9 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import FolderIcon from '@material-ui/icons/Folder';
 import { selectTools, add, remove } from './toolsSlice';
-import { Button } from "@material-ui/core";
+import { Button } from '@material-ui/core';
+import { testMessage } from './constants';
 
-const reduxTools = [
+export const reduxTools = [
   'Reducer',
   'Action',
   'Store',
@@ -41,7 +42,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const Example = () => {
+const Example =
+  ({
+     addMessage,
+   }: {
+    addMessage: Function;
+  }) => {
   const classes = useStyles();
   const tools = useAppSelector(selectTools);
   const dispatch = useAppDispatch();
@@ -49,6 +55,8 @@ const Example = () => {
   const handleAddTool = () => dispatch(add(reduxTools[tools.length]));
 
   const handleRemoveTool = () => dispatch(remove(tools[tools.length - 1]));
+
+  const handleLaunchTest = () => addMessage(testMessage);
 
   return (
     <div className={classes.root}>
@@ -101,6 +109,21 @@ const Example = () => {
             >
               Remove tool
             </Button>}
+        </Grid>
+        <Grid
+          className={classes.actions}
+          item
+          xs={12}
+          sm={12}
+        >
+          <Button
+            className={classes.btn}
+            variant="contained"
+            color="primary"
+            onClick={handleLaunchTest}
+          >
+            Launch test
+          </Button>
         </Grid>
       </Grid>
     </div>

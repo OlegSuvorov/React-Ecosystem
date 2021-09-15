@@ -10,6 +10,7 @@ const MaterialUI = lazy(() => import('./sections/Material-UI'));
 const WebWorker = lazy(() => import('./sections/WebWorker'));
 const CustomHooks = lazy(() => import('./sections/CustomHooks'));
 const ReduxToolkit = lazy(() => import('./sections/ReduxToolkit'));
+const JestEnzyme = lazy(() => import('./sections/Jest-Enzyme'));
 
 export const sections = [
   {
@@ -21,6 +22,11 @@ export const sections = [
     name: 'Redux Toolkit',
     path: '/redux-toolkit',
     component: ReduxToolkit,
+  },
+  {
+    name: 'Unit testing',
+    path: '/unit-testing',
+    component: JestEnzyme,
   },
   {
     name: 'Context',
