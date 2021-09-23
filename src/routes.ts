@@ -14,19 +14,14 @@ const JestEnzyme = lazy(() => import('./sections/Jest-Enzyme'));
 
 export const sections = [
   {
-    name: 'Virtualization',
-    path: '/virtualization',
-    component: Virtualization,
+    name: 'Material UI',
+    path: '/material-ui',
+    component: MaterialUI,
   },
   {
     name: 'Redux Toolkit',
     path: '/redux-toolkit',
     component: ReduxToolkit,
-  },
-  {
-    name: 'Unit testing',
-    path: '/unit-testing',
-    component: JestEnzyme,
   },
   {
     name: 'Context',
@@ -37,6 +32,11 @@ export const sections = [
     name: 'Code Splitting',
     path: '/code-splitting',
     component: CodeSplitting,
+  },
+  {
+    name: 'Virtualization',
+    path: '/virtualization',
+    component: Virtualization,
   },
   {
     name: 'Forms',
@@ -54,9 +54,9 @@ export const sections = [
     component: UseCallbackAndMemo,
   },
   {
-    name: 'Material UI',
-    path: '/material-ui',
-    component: MaterialUI,
+    name: 'Custom Hooks',
+    path: '/custom-hooks',
+    component: CustomHooks,
   },
   {
     name: 'Web Worker',
@@ -64,8 +64,8 @@ export const sections = [
     component: WebWorker,
   },
   {
-    name: 'Custom Hooks',
-    path: '/custom-hooks',
-    component: CustomHooks,
+    name: 'Unit testing',
+    path: '/unit-testing',
+    component: JestEnzyme,
   },
 ];
