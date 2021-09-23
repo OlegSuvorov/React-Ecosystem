@@ -131,19 +131,29 @@ const Example =
       addMessage('');
     };
 
+    const memoSetUsual = useCallback((text: string) => {
+      // Some additional logic
+      setUsual(text);
+    }, []);
+
+    const memoSetMemo = useCallback((text: string) => {
+      // Some additional logic
+      setMemo(text);
+    }, []);
+
     return (
       <div className={classes.root}>
         <Grid item xs={12} sm={12}>
           <Child
             childName={usual}
-            changeName={setUsual}
+            changeName={memoSetUsual}
             addMessage={memoAddMessage}
           />
         </Grid>
         <Grid item xs={12} sm={12}>
           <MemoChild
             childName={memo}
-            changeName={setMemo}
+            changeName={memoSetMemo}
             addMessage={memoAddMessage}
           />
         </Grid>
